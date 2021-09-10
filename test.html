@@ -17,7 +17,36 @@
     <div>
         <div class="container">
             <div class="row">
-                <div class="team-cards"></div>
+                <div class="card m-2" style="width: 18rem;">
+                  <div class="card-header">
+                    Manager: ${Manager.response.name}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Employee ID: ${Manager.response.id}</li>
+                    <li class="list-group-item">Email: ${Manager.response.email}</li>
+                    <li class="list-group-item">Office Number: ${Manager.response.officeNumber}</li>
+                  </ul>
+                </div>
+                <div class="card m-2" style="width: 18rem;">
+                  <div class="card-header">
+                    Engineer: ${response.name}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Employee ID: ${response.id}</li>
+                    <li class="list-group-item">Email: ${response.email}</li>
+                    <li class="list-group-item">Github: ${response.github}</li>
+                  </ul>
+                </div>
+                <div class="card m-2" style="width: 18rem;">
+                  <div class="card-header">
+                    Intern: ${response.name}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Employee ID: ${response.id}</li>
+                    <li class="list-group-item">Email: ${response.email}</li>
+                    <li class="list-group-item">School: ${response.school}</li>
+                  </ul>
+                </div>
             </div>
         </div>
     </div>

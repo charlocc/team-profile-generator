@@ -1,4 +1,47 @@
-function generateHTML(response) {
+const teamMembers = require('./index');
+
+function generateCard(response) {
+  switch (response.role) {
+    case 'Manager':
+      `<div class="card m-2" style="width: 18rem;">
+        <div class="card-header">
+          Manager: ${response.name}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Employee ID: ${response.id}</li>
+          <li class="list-group-item">Email: ${response.email}</li>
+          <li class="list-group-item">Office Number: ${response.officeNumber}</li>
+        </ul>
+      </div>`;
+    break;
+    case 'Engineer':
+      `<div class="card m-2" style="width: 18rem;">
+        <div class="card-header">
+          Engineer: ${response.name}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Employee ID: ${response.id}</li>
+          <li class="list-group-item">Email: ${response.email}</li>
+          <li class="list-group-item">Github: ${response.github}</li>
+        </ul>
+      </div>`
+    break;
+    case 'Intern':
+      `<div class="card m-2" style="width: 18rem;">
+        <div class="card-header">
+          Intern: ${response.name}
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Employee ID: ${response.id}</li>
+          <li class="list-group-item">Email: ${response.email}</li>
+          <li class="list-group-item">School: ${response.school}</li>
+        </ul>
+      </div>`
+    break;
+  }
+}
+
+function generatehtml(response) {
     return `<!doctype html>
     <html lang="en">
       <head>
@@ -17,10 +60,10 @@ function generateHTML(response) {
         </div>
         <div>
             <div class="container">
-                <div class="row">
-                    <div class="team-cards"></div>
-                </div>
-            </div>
+              <div class="row">
+                ${generateCard(teamMembers)} 
+              </div>   
+            </div>     
         </div>
     
         <!-- jQuery first --> 
@@ -32,4 +75,6 @@ function generateHTML(response) {
       </body>
     </html>`
 }
+
+module.exports = generatehtml;
 
