@@ -94,10 +94,10 @@ const createManager = () => {
     inquirer
         .prompt(managerQuestions)
         .then(response => {
-            Manager
+            const createdManager = new Manager(response.name, response.id, response.email, response.officeNumber)
             //push object to the array of team members
+            init();
         })
-    init();
 }
 
 // Engineer Function
@@ -105,10 +105,10 @@ const createEngineer = () => {
     inquirer
         .prompt(engineerQuestions)
         .then(response => {
-            Engineer
+            const createdEngineer = new Engineer(response.name, response.id, response.email, response.github)
             //push object to the array of team members
+            init();
         })
-    init();
 }
 
 // Intern function
@@ -116,10 +116,10 @@ const createIntern = () =>{
     inquirer
         .prompt(internQuestions)
         .then(response => {
-            Intern
+            const createdIntern = new Intern (response.name, response.id, response.email, response.school)
             //push object to the array of team members 
+            init();
         })
-    init();
 }
 
 // Function to add the information to the generate HTML file
@@ -127,11 +127,12 @@ function init() {
     inquirer
         .prompt(startQuestion)
         .then(response => {
-            switch (response) {
+            console.log(response.role);
+            switch (response.role) {
                 case 'Manager':
                     createManager();
                 break;
-                case 'Engingeer':
+                case 'Engineer':
                     createEngineer();
                 break;
                 case 'Intern':
@@ -140,8 +141,6 @@ function init() {
                 case 'Done':
                     console.log('Thank you for building your team')
                 break;
-            default:
-                console.log('Please pick a team member to add')
             }
         // fs.writeFile("index.html", generateHTML(response), (err) =>
         // err ? console.log(err) : console.log('success')
