@@ -61,7 +61,7 @@ const engineerQuestions =[
     },
     {
         type: 'input',
-        message: 'What is the Github Username of this engineer?',
+        message: 'What is the Github URL of this engineer?',
         name: 'github',
     },
 ]
