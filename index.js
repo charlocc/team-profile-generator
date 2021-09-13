@@ -1,11 +1,10 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-const generateHTML = require('./generatehtml');
-const generateCard = require('./generatehtml');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const generatehtml = require('./generatehtml');
 const teamMembers = [];
 // Will add the team members to this array
 
@@ -98,8 +97,6 @@ const createManager = () => {
             const createdManager = new Manager(response.name, response.id, response.email, response.officeNumber)
             //push object to the array of team members
             teamMembers.push(createdManager);
-            console.log(teamMembers);
-            generateCard(createdManager);
             //run the init function to add more members
             init();
         })
@@ -113,8 +110,6 @@ const createEngineer = () => {
             const createdEngineer = new Engineer(response.name, response.id, response.email, response.github)
             //push object to the array of team members
             teamMembers.push(createdEngineer);
-            console.log(teamMembers);
-            generateCard(createdEngineer);
             //run the init function to add more members
             init();
         })
@@ -128,8 +123,6 @@ const createIntern = () =>{
             const createdIntern = new Intern (response.name, response.id, response.email, response.school)
             //push object to the array of team members 
             teamMembers.push(createdIntern);
-            console.log(teamMembers);
-            generateCard(createdIntern);
             //run the init function to add more members
             init();
         })
@@ -153,9 +146,9 @@ function init() {
                 break;
                 case 'Done':
                     console.log('Thank you for building your team');
-                    response=>{fs.writeFile("index.html", generateHTML(teamMembers), (err) =>
+                    fs.writeFile("index.html", generatehtml(teamMembers), (err) =>
                     err ? console.log(err) : console.log('success')
-                    );}
+                    );
                 break;
             }
         })

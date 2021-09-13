@@ -1,47 +1,50 @@
-const teamMembers = require('./index');
+const init = require('./index');
 
-function generateCard(response) {
-  switch (response.role) {
-    case 'Manager':
-      `<div class="card m-2" style="width: 18rem;">
-        <div class="card-header">
-          Manager: ${response.name}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Employee ID: ${response.id}</li>
-          <li class="list-group-item">Email: ${response.email}</li>
-          <li class="list-group-item">Office Number: ${response.officeNumber}</li>
-        </ul>
-      </div>`;
-    break;
-    case 'Engineer':
-      `<div class="card m-2" style="width: 18rem;">
-        <div class="card-header">
-          Engineer: ${response.name}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Employee ID: ${response.id}</li>
-          <li class="list-group-item">Email: ${response.email}</li>
-          <li class="list-group-item">Github: ${response.github}</li>
-        </ul>
-      </div>`
-    break;
-    case 'Intern':
-      `<div class="card m-2" style="width: 18rem;">
-        <div class="card-header">
-          Intern: ${response.name}
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Employee ID: ${response.id}</li>
-          <li class="list-group-item">Email: ${response.email}</li>
-          <li class="list-group-item">School: ${response.school}</li>
-        </ul>
-      </div>`
-    break;
-  }
-}
+
+const finalArray = [];
 
 function generatehtml(response) {
+  for (let i = 0; i < response.length; i++) {
+    switch (response[i].role) {
+      case 'Manager':
+        finalArray.push(`<div class="card m-2" style="width: 18rem;">
+          <div class="card-header">
+            Manager: ${response[i].name}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Employee ID: ${response[i].id}</li>
+            <li class="list-group-item">Email: ${response[i].email}</li>
+            <li class="list-group-item">Office Number: ${response[i].officeNumber}</li>
+          </ul>
+        </div>`);
+      break;
+      case 'Engineer':
+        finalArray.push(`<div class="card m-2" style="width: 18rem;">
+          <div class="card-header">
+            Engineer: ${response[i].name}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Employee ID: ${response[i].id}</li>
+            <li class="list-group-item">Email: ${response[i].email}</li>
+            <li class="list-group-item">Github: ${response[i].github}</li>
+          </ul>
+        </div>`)
+      break;
+      case 'Intern':
+        finalArray.push(`<div class="card m-2" style="width: 18rem;">
+          <div class="card-header">
+            Intern: ${response[i].name}
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Employee ID: ${response[i].id}</li>
+            <li class="list-group-item">Email: ${response[i].email}</li>
+            <li class="list-group-item">School: ${response[i].school}</li>
+          </ul>
+        </div>`)
+      break;
+    }
+  }
+
     return `<!doctype html>
     <html lang="en">
       <head>
@@ -61,7 +64,7 @@ function generatehtml(response) {
         <div>
             <div class="container">
               <div class="row">
-                ${generateCard(teamMembers)} 
+                ${finalArray.join('')} 
               </div>   
             </div>     
         </div>
@@ -74,7 +77,8 @@ function generatehtml(response) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       </body>
     </html>`
-}
+  }
+
 
 module.exports = generatehtml;
 
